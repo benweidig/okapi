@@ -70,7 +70,7 @@ go get -u github.com/benweidig/okapi
 | ID          | string | 255   | An unique identifier of a changeset                                                       |
 | SkipOnError | bool   | n/a   | Failed changesets will be skipped (instead of failing the whole migration) and not re-ran |
 | Script      | string | n/a   | SQL script, the actual changeset                                                          |
-| Comment     | string | 255   | A comment for easier debugging while reading the data on the server                       |
+| Comment     | string | 255   | A comment for easier debugging while reading the data on the server, can be empty         |
 
 *=Max Size for `.WithSqlDriver(...)`
 

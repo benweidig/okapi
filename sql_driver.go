@@ -34,8 +34,8 @@ func (d *sqlDriver) Validate(c Changeset) error {
 	}
 
 	lComment := len(c.Comment)
-	if lComment == 0 || lComment > 255 {
-		return InvalidChangesetError{fmt.Sprintf("invalid Comment length - valid: 1-255 - actual: %d", lComment)}
+	if lComment > 255 {
+		return InvalidChangesetError{fmt.Sprintf("invalid Comment length > 255: %d", lComment)}
 	}
 
 	return nil
