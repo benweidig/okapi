@@ -6,7 +6,7 @@ type MysqlDialect struct {
 func (d MysqlDialect) EnsureChangelog() string {
 	return `
 		CREATE TABLE IF NOT EXISTS okapi_changelog (
-			execution_order		INT(11) 		NOT NULL AUTO_INCREMENT PRIMARY KEY
+			execution_order		INT(11) 		NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			id					VARCHAR(255)	NOT NULL,
 			checksum			VARCHAR(32)		NOT NULL,
 			comment				VARCHAR(255)	NOT NULL,
