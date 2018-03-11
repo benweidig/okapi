@@ -10,7 +10,7 @@ myself.
 
 ## Features
 
-- Batteries included (at least for stdlib sql, dialects only sqlite and mysql)
+- Batteries included (at least for stdlib sql, dialects only sqlite, mysql and postgres)
 - Checksums for changesets
 - Easy extendable
 - Bring-your-own-logging
@@ -83,7 +83,7 @@ The uniqunes/immutability of a changeset if defined by 2 fields:
 ## Caveats
 
 - Changesets are script-based, not easily usable for different DBs
-- Only sqlite3 and mysql built-in so far
+- Only sqlite3, mysql and postrgres built-in so far
 - Not battle-tested 
 - Whitespace ignorance isn't perfect, e.g. `SOME_SQL ( COLUMN )` != `SOME_SQL (COLUMN)`.
 
