@@ -85,6 +85,7 @@ The uniqunes/immutability of a changeset if defined by 2 fields:
 - Changesets are script-based, not easily usable for different DBs
 - Only sqlite3 and mysql built-in so far
 - Not battle-tested 
+- Whitespace ignorance isn't perfect, e.g. `SOME_SQL ( COLUMN )` != `SOME_SQL (COLUMN)`.
 
 
 ## Logging
