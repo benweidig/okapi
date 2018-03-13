@@ -1,18 +1,17 @@
 # Okapi [![Build Status](https://travis-ci.org/benweidig/okapi.svg?branch=master)](https://travis-ci.org/benweidig/okapi)
 
-A database migration library for Go.
+A database migration library for Go. It's not very sophisticated but it fullfills my needs.
 
 ## Why?
 
 Because I can. Seriously... While I was working on another project I realized I would need some kind of database migration functionality.
-After looking around I found [darwin](https://github.com/GuiaBolso/darwin) but it didn't fit my needs perfectly so I decided to write one
-myself.
+After looking around I found [darwin](https://github.com/GuiaBolso/darwin) but it didn't fit my needs perfectly so I decided to write own based on the general concept.
 
 ## Features
 
 - Batteries included (at least for stdlib sql, dialects only sqlite, mysql and postgres)
 - Checksums for changesets
-- Easy extendable
+- Easy extendable (just write your own dialect/driver)
 - Bring-your-own-logging
 
 ## Get it
@@ -82,11 +81,12 @@ The uniqunes/immutability of a changeset if defined by 2 fields:
 
 ## Caveats
 
-- Changesets are script-based, not easily usable for different DBs
+- Changesets are having scripts for the specific database, no easy switching
 - Only sqlite3, mysql and postrgres built-in so far
 - Not battle-tested 
 - Whitespace ignorance isn't perfect, e.g. `SOME_SQL ( COLUMN )` != `SOME_SQL (COLUMN)`.
 
+I thought about implementing or using a preeexisting DSL for the scripts, but if those change the checksum would differ and you would have some real problems. You should write DB specific scripts, I'm using multiple migrationas for different DBs.
 
 ## Logging
 
