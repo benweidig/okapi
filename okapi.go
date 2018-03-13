@@ -2,6 +2,7 @@ package okapi
 
 import (
 	"database/sql"
+	"fmt"
 	"sort"
 	"sync"
 	"time"
@@ -71,6 +72,8 @@ func (o *Okapi) Migrate() error {
 	// Step 5: Execute the plan!
 	notify("executing migration plan", nil, nil)
 	for _, m := range plan {
+		notify(fmt.Sprintf("migrating %s", m.ID), nil, nil)
+
 		_, execErr := o.driver.Exec(m.Script)
 		now := time.Now()
 		status := ExecutionStatusExecuted
