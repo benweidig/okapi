@@ -12,8 +12,8 @@ type Driver interface {
 	// EnsureChangelog creates the changelog table if necessary
 	EnsureChangelog() error
 
-	// InsertRecord insert a new
-	InsertRecord(r *ChangesetExecution) error
+	// LogExecution insert a new
+	LogExecution(ex *ChangesetExecution) error
 
 	// ExecutedChangesets returns the already executed changeset records
 	ExecutedChangesets() ([]ChangesetExecution, error)

@@ -49,15 +49,15 @@ func (d *sqlDriver) EnsureChangelog() error {
 	return err
 }
 
-func (d *sqlDriver) InsertRecord(r *ChangesetExecution) error {
+func (d *sqlDriver) LogExecution(ex *ChangesetExecution) error {
 	err := d.tx(func(tx *sql.Tx) error {
 		_, err := tx.Exec(
 			d.Dialect.InsertRecord(),
-			r.ID,
-			r.Checksum,
-			r.Comment,
-			r.ExecutedAt,
-			r.Status,
+			ex.ID,
+			ex.Checksum,
+			ex.Comment,
+			ex.ExecutedAt,
+			ex.Status,
 		)
 		return err
 	})

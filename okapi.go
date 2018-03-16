@@ -84,24 +84,24 @@ func (o *Okapi) Migrate() error {
 				status = ExecutionStatusFailed
 			}
 		}
-		r := &ChangesetExecution{
+		ex := &ChangesetExecution{
 			ID:         m.ID,
 			Comment:    m.Comment,
 			Checksum:   m.checksum(),
 			Status:     executionStatusMap[status],
 			ExecutedAt: now,
 		}
-		err = o.driver.InsertRecord(r)
+		err = o.driver.LogExecution(ex)
 		if err != nil {
-			notify("error executing", r, err)
+			notify("error executing", ex, err)
 			return err
 		}
 		if status == ExecutionStatusFailed {
-			notify("error executing", r, err)
+			notify("error executing", ex, err)
 			return execErr
 		}
 
-		notify("executed changeset", r, nil)
+		notify("executed changeset", ex, nil)
 	}
 
 	notify("migration finished", nil, nil)

@@ -1,9 +1,10 @@
 package okapi
 
+// Info holds all data for the logging channel
 type Info struct {
-	Message string
-	Record  *ChangesetExecution
-	Error   error
+	Message   string
+	Execution *ChangesetExecution
+	Error     error
 }
 
 var notifier chan Info
@@ -13,14 +14,14 @@ func Notifier(ch chan Info) {
 	notifier = ch
 }
 
-func notify(msg string, r *ChangesetExecution, err error) {
+func notify(msg string, ex *ChangesetExecution, err error) {
 	if notifier == nil {
 		return
 	}
 
 	notifier <- Info{
-		Message: msg,
-		Record:  r,
-		Error:   err,
+		Message:   msg,
+		Execution: ex,
+		Error:     err,
 	}
 }
