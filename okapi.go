@@ -68,9 +68,13 @@ func (o *Okapi) Migrate() error {
 	// Step 4: Build the migration plan
 	notify("building migration plan", nil, nil)
 	plan := o.migrationPlan(applied)
+	if len(plan) == 0 {
+		notify("no migrations required", nil, nil)
+		return nil
+	}
 
 	// Step 5: Execute the plan!
-	notify("executing migration plan", nil, nil)
+	notify(fmt.Sprintf("executing migration plan (%d)", len(plan)), nil, nil)
 	for _, m := range plan {
 		notify(fmt.Sprintf("migrating %s", m.ID), nil, nil)
 
